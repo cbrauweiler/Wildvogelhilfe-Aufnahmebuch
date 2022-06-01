@@ -45,13 +45,25 @@ if(!empty($_GET['func']) && $_GET['func'] == 'color') {
 	
 	switch($schema) {
 		
+		case 'darkgreen': $new_colorclass = 'green darken-3'; $new_primarycolor = '#2e7d32'; $new_secondarycolor = '#a5d6a7';
+		break;
+		
 		case 'green': $new_colorclass = 'green accent-3'; $new_primarycolor = '#00e676'; $new_secondarycolor = '#b9f6ca';
 		break;
 		
+		case 'teal': $new_colorclass = 'teal darken-4'; $new_primarycolor = '#004d40'; $new_secondarycolor = '#80cbc4';
+		break;
+		
+		case 'cyan': $new_colorclass = 'cyan accent-4'; $new_primarycolor = '#00b8d4'; $new_secondarycolor = '#80deea ';
+		break;
+	
 		case 'blue': $new_colorclass = 'blue darken-3'; $new_primarycolor = '#1565c0'; $new_secondarycolor = '#bbdefb';
 		break;
 		
-		case 'yellow': $new_colorclass = 'yellow darken-3'; $new_primarycolor = '#f9a825 '; $new_secondarycolor = '#fbc02d ';
+		case 'lightblue': $new_colorclass = 'light-blue accent-4'; $new_primarycolor = '#0091ea'; $new_secondarycolor = '#bbdefb';
+		break;
+		
+		case 'purple': $new_colorclass = 'purple darken-4'; $new_primarycolor = '#4a148c '; $new_secondarycolor = '#ce93d8 ';
 		break;
 		
 		case 'red': $new_colorclass = 'red darken-4'; $new_primarycolor = '#b71c1c'; $new_secondarycolor = '#ef9a9a';

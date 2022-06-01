@@ -28,7 +28,7 @@ else $tab = '1';
 	
 		<form class="valign-wrapper left" action="<?php echo $_SERVER['PHP_SELF'].'?menu=list'; ?>" method="POST">
 			<div class="input-field">
-				<input id="keyword" name="keyword" type="text">
+				<input id="keyword" name="keyword" type="text" value="<?php if(!empty($_POST['keyword'])) { echo $_POST['keyword']; } ?>">
 				<label for="keyword">Suche nach...</label>
 			</div>
 				
@@ -56,7 +56,7 @@ else $tab = '1';
 
 	if(isset($_POST['search'])) {
 		
-		echo 'Die Suche ist noch nicht fertig...';
+		include('list_search.php');
 		
 	}
 	else {

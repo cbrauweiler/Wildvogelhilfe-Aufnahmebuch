@@ -49,11 +49,11 @@ if(isset($_POST['speichern'])) {
 	$vogel_parasiten_advocate = $_POST['vogel_parasiten_advocate']; if(empty($vogel_parasiten_advocate)) { $vogel_parasiten_advocate = '0000-00-00'; }
 	$vogel_parasiten_baycoxx = $_POST['vogel_parasiten_baycoxx']; if(empty($vogel_parasiten_baycoxx)) { $vogel_parasiten_baycoxx = '0000-00-00'; }
 	$vogel_parasiten_sonstige = $_POST['vogel_parasiten_sonstige'];
-	$vogel_ausgewildert = $_POST['vogel_ausgewildert'];
 	$vogel_verstorben = $_POST['vogel_verstorben'];
 	$vogel_verstorbendatum = $_POST['vogel_verstorbendatum']; if(empty($vogel_verstorbendatum)) { $vogel_verstorbendatum = '0000-00-00'; }
 	$vogel_euthanasiert = $_POST['vogel_euthanasiert'];
 	$vogel_euthanasiertdatum = $_POST['vogel_euthanasiertdatum']; if(empty($vogel_euthanasiertdatum)) { $vogel_euthanasiertdatum = '0000-00-00'; }
+	$vogel_ausgewildert = $_POST['vogel_ausgewildert'];
 	$vogel_auswilderungsdatum = $_POST['vogel_auswilderungsdatum']; if(empty($vogel_auswilderungsdatum)) { $vogel_auswilderungsdatum = '0000-00-00'; }
 	$vogel_weitergeleitet = $_POST['vogel_weitergeleitet'];
 	if(empty($vogel_weitergeleitet)) { $vogel_weitergeleitet = '0'; }
@@ -104,11 +104,11 @@ if($result = mysqli_query($mysqli, $query)) {
 		$db_vogel_parasiten_advocate = $row['vogel_parasiten_advocate'];
 		$db_vogel_parasiten_baycoxx = $row['vogel_parasiten_baycoxx'];
 		$db_vogel_parasiten_sonstige = $row['vogel_parasiten_sonstige'];
-		$db_vogel_ausgewildert = $row['vogel_ausgewildert'];
 		$db_vogel_verstorben = $row['vogel_verstorben'];
 		$db_vogel_verstorbendatum = $row['vogel_verstorbendatum'];
 		$db_vogel_euthanasiert = $row['vogel_euthanasiert'];
 		$db_vogel_euthanasiertdatum = $row['vogel_euthanasiertdatum'];
+		$db_vogel_ausgewildert = $row['vogel_ausgewildert'];
 		$db_vogel_auswilderungsdatum = $row['vogel_auswilderungsdatum'];
 		$db_vogel_weitergeleitet = $row['vogel_weitergeleitet'];
 		$db_vogel_weiterleitungsdatum = $row['vogel_weiterleitungsdatum'];
@@ -188,6 +188,8 @@ if($result = mysqli_query($mysqli, $query)) {
 					<span>Spende erhalten</span>
 				</label>
 			</p>
+		</div>
+		<div class="input-field col s6">
 			<p>
 				<label>
 					<input type="radio" name="finder_spende" value="0" class="validate" required <?php if($db_finder_spende == "0") { echo 'checked'; } ?> />
@@ -197,10 +199,10 @@ if($result = mysqli_query($mysqli, $query)) {
 		</div>
 		<div class="input-field col s6">
 			<input id="finder_spende_betrag" name="finder_spende_betrag" type="text" value="<?php echo $db_finder_spende_betrag; ?>" autocomplete="off">
-			<label for="finder_spende_betrag">Spendenbetrag</label>
+			<label for="finder_spende_betrag">Spendenbetrag in Euro</label>
 		</div>
 		
-		<div class="input-field col s6 offset-s6">
+		<div class="input-field col s6">
 			<p>
 				<label>
 					<input type="checkbox" name="finder_spendenbescheinigung" value="1" <?php if($db_finder_spendenbescheinigung == "1") { echo 'checked'; } ?>>
@@ -297,31 +299,31 @@ if($result = mysqli_query($mysqli, $query)) {
 		<div class="input-field col s12">
 			<span>Stadium</span>
 			<div class="row">
-				<p class="col s2">
+				<p class="col s12 m2">
 					<label>
 						<input type="radio" name="vogel_stadium" value="nestling"<?php if($form_vogel_stadium_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_stadium == "nestling") { echo ' checked'; } ?>>
 						<span>Nestling</span>
 					</label>
 				</p>
-				<p class="col s2">
+				<p class="col s12 m2">
 					<label>
 						<input type="radio" name="vogel_stadium" value="nestling-befiedert"<?php if($form_vogel_stadium_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_stadium == "nestling-befiedert") { echo ' checked'; } ?>> 
 						<span>Nestling (befiedert)</span>
 					</label>
 				</p>
-				<p class="col s2">
+				<p class="col s12 m2">
 					<label>
 						<input type="radio" name="vogel_stadium" value="aestling"<?php if($form_vogel_stadium_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_stadium == "aestling") { echo ' checked'; } ?>> 
 						<span>Ästling</span>
 					</label>
 				</p>
-				<p class="col s2">
+				<p class="col s12 m2">
 					<label>
 						<input type="radio" name="vogel_stadium" value="juvenil"<?php if($form_vogel_stadium_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_stadium == "juvenil") { echo ' checked'; } ?>>
 						<span>Juvenil</span>
 					</label>
 				</p>
-				<p class="col s2">
+				<p class="col s12 m2">
 					<label>
 						<input type="radio" name="vogel_stadium" value="adult"<?php if($form_vogel_stadium_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_stadium == "adult") { echo ' checked'; } ?>>
 						<span>Adult</span>
@@ -426,17 +428,29 @@ if($result = mysqli_query($mysqli, $query)) {
 		<?php } ?>		
 		
 		<?php if($form_vogel_verstorben_bearbeiten == 'on') { ?>
-		<div class="input-field col s6">
+		<div class="input-field col s3">
 			<input type="number" name="vogel_verstorben" value="<?php echo $db_vogel_verstorben; ?>"<?php if($form_vogel_verstorben_pflicht == 'on') { echo 'class="validate" required'; } ?>>
 			<label for="vogel_verstorben">Verstorben</label>
 		</div>
+		<p class="col s9">
+			<label>
+				<input type="date" name="vogel_verstorbendatum" value="<?php echo $db_vogel_verstorbendatum; ?>" max="<?php echo date("Y-m-d"); ?>"<?php if($form_vogel_verstorben_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+				<span>Datum</span>
+			</label>
+		</p>
 		<?php } ?>
 		
 		<?php if($form_vogel_euthanasiert_bearbeiten == 'on') { ?>
-		<div class="input-field col s6">
+		<div class="input-field col s3">
 			<input type="number" name="vogel_euthanasiert" value="<?php echo $db_vogel_euthanasiert; ?>"<?php if($form_vogel_euthanasiert_pflicht == 'on') { echo 'class="validate" required'; } ?>>
 			<label for="vogel_euthanasiert">Euthanasiert</label>
 		</div>
+		<p class="col s9">
+			<label>
+				<input type="date" name="vogel_euthanasiertdatum" value="<?php echo $db_vogel_euthanasiertdatum; ?>" max="<?php echo date("Y-m-d"); ?>"<?php if($form_vogel_euthanasiert_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+				<span>Datum</span>
+			</label>
+		</p>
 		<?php } ?>
 		
 		<?php if($form_vogel_weitergeleitet_bearbeiten == 'on') { ?>
@@ -447,7 +461,7 @@ if($result = mysqli_query($mysqli, $query)) {
 		<p class="col s3">
 			<label>
 				<input type="date" name="vogel_weiterleitungsdatum" value="<?php echo $db_vogel_weiterleitungsdatum; ?>" max="<?php echo date("Y-m-d"); ?>"<?php if($form_vogel_weitergeleitet_pflicht == 'on') { echo 'class="validate" required'; } ?>>
-				<span>Weitergeleitet (Datum)</span>
+				<span>Datum</span>
 			</label>
 		</p>
 		<p class="col s6">
@@ -459,14 +473,14 @@ if($result = mysqli_query($mysqli, $query)) {
 		<?php } ?>
 		
 		<?php if($form_vogel_ausgewildert_bearbeiten == 'on') { ?>
-		<div class="input-field col s6">
+		<div class="input-field col s3">
 			<input type="number" name="vogel_ausgewildert" value="<?php echo $db_vogel_ausgewildert; ?>" <?php if($form_vogel_ausgewildert_pflicht == 'on') { echo 'class="validate" required'; } ?>>
 			<label for="vogel_ausgewildert">Ausgewildert</label>
 		</div>
-		<p class="col s6">
+		<p class="col s9">
 			<label>
 				<input type="date" name="vogel_auswilderungsdatum" value="<?php echo $db_vogel_auswilderungsdatum; ?>" max="<?php echo date("Y-m-d"); ?>"<?php if($form_vogel_ausgewildert_pflicht == 'on') { echo 'class="validate" required'; } ?>>
-				<span>Ausgewildert (Datum)</span>
+				<span>Datum</span>
 			</label>
 		</p>
 		<?php } ?>

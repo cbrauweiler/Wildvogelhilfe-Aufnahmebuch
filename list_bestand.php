@@ -76,7 +76,7 @@
 				<tr>
 					<td align="center">'.$split_date[2].'.'.$split_date[1].'</td>
 					<td align="center">'; if(!empty($db_vogel_foto_name)) { echo '<a href="?menu=list&action=show&id='.$db_id.'">'.$db_vogel_art.' ('.$db_vogel_stadium.')</a>'; }else echo $db_vogel_art.' ('.$db_vogel_stadium.')'; echo '</td>
-					<td align="center">'; if(isset($_POST['search'])) { echo $db_vogel_anzahl; }else { echo $anz.' ('.$db_vogel_anzahl.')'; } echo '</td>
+					<td align="center">'.$anz.' ('.$db_vogel_anzahl.')</td>
 					<td align="center">'; if (strlen($db_finder_ort) > 10){ echo substr($db_finder_ort, 0, 10) . '...'; }else echo $db_finder_ort; echo '</td>
 					<td align="center"><a href="?menu=edit&id='.$db_id.'"><i class="material-icons">edit</i></a></td>
 					<td align="center"><a href="?menu=list&action=delete&id='.$db_id.'" onclick="return window.confirm(\'Soll dieser Datensatz wirklich gelöscht werden?\');"><i class="material-icons">delete</i></a></td>

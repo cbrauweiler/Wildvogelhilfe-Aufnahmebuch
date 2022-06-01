@@ -13,7 +13,10 @@ if($action == 'deluser' && $session_mandant <= '2') {
 	$query = "DELETE FROM `einstellungen` WHERE `mandant`='$delid';";
 	mysqli_query($mysqli, $query);
 	
-	$query = "DROP TABLE `aufnahmebuch_$delid`;";
+	$query = "DELETE FROM `aufnahmebuch` WHERE `mandant`='$delid';";
+	mysqli_query($mysqli, $query);
+	
+	$query = "DELETE FROM `kassenbuch` WHERE `mandant`='$delid';";
 	mysqli_query($mysqli, $query);
 
 	echo '<ul class="warnung">Benutzer wurde gelöscht...</ul><br />';
@@ -45,14 +48,15 @@ if(isset($_POST['passwort_aendern'])) {
 if(isset($_POST['neu'])) {
 	
 	$neu_mandant = $_POST['mandant'];
-	$neu_benutzername = $_POST['benutzername'];
-	$neu_passwort = md5($_POST['passwort']);
-	$neu_email = $_POST['email'];
+	$neu_benutzername = htmlspecialchars($_POST['benutzername']);
+	$neu_passwort = htmlspecialchars($_POST['passwort']);
+	$neu_passwort = password_hash($neu_passwort, PASSWORD_DEFAULT);
+	$neu_email = htmlspecialchars($_POST['email']);
 	
 	$query_benutzer = "INSERT INTO `benutzer` (`benutzername`, `passwort`, `email`) VALUES ('$neu_benutzername', '$neu_passwort', '$neu_email')";
 	mysqli_query($mysqli, $query_benutzer);
 	
-	$query_einstellungen = "INSERT INTO `einstellungen` (`mandant`, `style_primaer`, `style_sekundaer`, `style_tertiaer`, `style_highlight`, `style_shadow1`, `style_shadow2`, `style_hintergrund`, `style_tabelle_hintergrund`, `style_schriftfarbe`) VALUES ('$neu_mandant', '#D5D5D4', '#808080', '#404040', '#BFBFBF', '#555555', '#999999', '#efefef', '#ffffff', '#222222')";
+	$query_einstellungen = "INSERT INTO `einstellungen` (`mandant`) VALUES ('$neu_mandant')";
 	mysqli_query($mysqli, $query_einstellungen);
 	
 	echo '<ul class="erfolg">Neuer Benutzer angelegt...</ul><br />';
@@ -99,10 +103,14 @@ if(isset($_POST['neu'])) {
 <h4>Farbenschema</h4>
 
 	<div class="row">
-		<div class="card-panel green accent-3 col s12 m3 center-align" id="green" onclick="setcolor(this);">Grün</div>
-		<div class="card-panel white-text blue darken-3 col s12 m3 center-align" id="blue" onclick="setcolor(this);">Blau</div>
-		<div class="card-panel yellow darken-3 col s12 m3 center-align" id="yellow" onclick="setcolor(this);">Gelb</div>
-		<div class="card-panel white-text red darken-4 col s12 m3 center-align" id="red" onclick="setcolor(this);">Rot</div>
+		<div class="card-panel white-text green accent-3 col s12 m3 center-align" id="green" onclick="setcolor(this);" style="cursor: pointer;">Hell-Grün</div>
+		<div class="card-panel white-text green darken-3 col s12 m3 center-align" id="darkgreen" onclick="setcolor(this);" style="cursor: pointer;">Grün</div>
+		<div class="card-panel white-text teal darken-4 col s12 m3 center-align" id="teal" onclick="setcolor(this);" style="cursor: pointer;">Blau-Grün</div>
+		<div class="card-panel white-text cyan accent-4 col s12 m3 center-align" id="cyan" onclick="setcolor(this);" style="cursor: pointer;">Türkis</div>
+		<div class="card-panel white-text light-blue accent-4 col s12 m3 center-align" id="lightblue" onclick="setcolor(this);" style="cursor: pointer;">Hell-Blau</div>
+		<div class="card-panel white-text blue darken-3 col s12 m3 center-align" id="blue" onclick="setcolor(this);" style="cursor: pointer;">Blau</div>
+		<div class="card-panel white-text purple darken-4 col s12 m3 center-align" id="purple" onclick="setcolor(this);" style="cursor: pointer;">Lila</div>
+		<div class="card-panel white-text red darken-4 col s12 m3 center-align" id="red" onclick="setcolor(this);" style="cursor: pointer;">Rot</div>
 	</div>
 
 <br /><br />
@@ -811,7 +819,7 @@ if($result = mysqli_query($mysqli, $query)) {
 			<td align="center">'.$benutzer_mandant.'</td>
 			<td align="center">'; if(!empty($benutzer_email)) { echo '<a href="mailto:'.$benutzer_email.'" title="'.$benutzer_email.'">'.$benutzer_benutzername.'</a>'; } else { echo $benutzer_benutzername; } echo'</td>
 			<td align="center">'.$benutzer_version.'</td>
-			<td align="center">'.date("d.m.y", $benutzer_lastlogon).'</td>
+			<td align="center">'.date("d.m.y - H:i", $benutzer_lastlogon).' Uhr</td>
 			<td align="center">'.$sum_eintraege.'</td>
 			<td align="center">'; if(!empty($benutzer_mandant != $session_mandant)) { echo '<a href="?menu=settings&action=deluser&mandant='.$benutzer_mandant.'" onclick="return window.confirm(\'Soll dieser Benutzer wirklich gelöscht werden?\');"><i class="material-icons">delete</i></a>'; } echo'</td>
 		</tr>
@@ -853,11 +861,11 @@ if($result = mysqli_query($mysqli, $query)) {
 			<label for="passwort">Passwort</label>
 		</div>
 		<div class="input-field col s12 m3">
-			<input type="text" id="email" name="email" autocomplete="off" required>
+			<input type="text" id="email" name="email" autocomplete="off">
 			<label for="email">E-Mail-Adresse</label>
 		</div>
 		<div class="input-field col s12 m3 center-align">
-			<button class="btn waves-effect waves-light <?php echo $colorclass; ?>" type="submit" name="passwort_aendern">Speichern
+			<button class="btn waves-effect waves-light <?php echo $colorclass; ?>" type="submit" name="neu">Speichern
 				<i class="material-icons right">create</i>
 			</button>
 		</div>

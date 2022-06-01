@@ -137,3 +137,12 @@ ul.changelog li {
   color:#357f4e;
   box-shadow: 3px 3px 5px #222222;
 }
+
+
+@media print{
+
+	.navbar-fixed, .page-footer, .btn-small, a, h4, #noprint {
+		display: none;
+	}
+	
+}

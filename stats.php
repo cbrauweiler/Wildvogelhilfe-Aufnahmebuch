@@ -210,7 +210,7 @@
 <br /><br />
 
 <h4>Aufnahmen pro Monat</h4>
-<table id="monatsstatstbl" class="striped centered">
+<table id="noprint" class="striped centered">
 	<thead>
 		<tr style="background-color: #ddd;">
 			<th width="25%">Monat</th>
@@ -314,7 +314,7 @@
 <br /><br />
 
 <h4>Katzenopfer</h4>
-<table class="striped centered">
+<table id="noprint" class="striped centered">
 	<thead>
 		<tr style="background-color: #ddd;">
 			<th></th>
@@ -499,7 +499,7 @@
 <br /><br />
 
 <h4>Spenden</h4>
-<table id="spendentbl" class="striped centered">
+<table id="noprint" class="striped centered">
 	<thead>
 		<tr style="background-color: #ddd;">
 			<th>Vogelart</th>
@@ -547,7 +547,7 @@
 <br /><br />
 
 <h4>Ausgaben</h4>
-<table id="ausgabentbl" class="striped centered">
+<table id="noprint" class="striped centered">
 	<thead>
 		<tr style="background-color: #ddd;">
 			<th>Kategorie</th>

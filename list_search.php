@@ -1,4 +1,4 @@
-<h3>Euthanasiert</h3>
+<h3>Suche nach <?php echo $_POST['keyword']; ?></h3>
 
 <table class="striped centered">
 	<thead>
@@ -14,9 +14,10 @@
 
 <?php
 
-	#$query = "SELECT * FROM `aufnahmebuch` WHERE `mandant`='$session_mandant' AND `papierkorb`='0' AND `vogel_euthanasiert`>0 AND `vogel_anzahl`!=vogel_ausgewildert+vogel_euthanasiert+vogel_verstorben+vogel_weitergeleitet ORDER BY `datum` DESC";
-	$query = "SELECT * FROM `aufnahmebuch` WHERE `mandant`='$session_mandant' AND `papierkorb`='0' AND `vogel_euthanasiert`>0 ORDER BY `datum` DESC";
-	
+	$keyword = $_POST['keyword'];
+
+	$query = "SELECT * FROM `aufnahmebuch` WHERE `mandant`='$session_mandant' AND `papierkorb`='0' AND `vogel_art` LIKE '%$keyword%' OR `mandant`='$session_mandant' AND `papierkorb`='0' AND `finder_ort` LIKE '%$keyword%' ORDER BY `datum` DESC";
+		
 	$date_before = '';
 	$sum_anzahl = 0;
 	
@@ -35,9 +36,9 @@
 			$db_vogel_euthanasiert = $row['vogel_euthanasiert'];
 			$db_vogel_weitergeleitet = $row['vogel_weitergeleitet'];
 			
-			$anz = $db_vogel_euthanasiert;
-			$sum_anzahl = $sum_anzahl+$anz;
-				
+			$anz = $db_vogel_anzahl-$db_vogel_ausgewildert-$db_vogel_verstorben-$db_vogel_euthanasiert-$db_vogel_weitergeleitet;
+			$sum_anzahl = $sum_anzahl+$db_vogel_anzahl;
+			
 			switch($db_vogel_stadium) {
 				
 				case 'nestling': $db_vogel_stadium = 'Nestling';
@@ -60,16 +61,24 @@
 			# Leerzeile bei neuem Jahr
 			$split_date = explode("-", $db_datum);
 			if($split_date[0] != $date_before) {
-			
-				echo '<tr><td colspan="6" align="center"><h5>'.$split_date[0].'</h5></td></tr>';
-			
+				
+				# Zählen
+				$query2 = "SELECT SUM(vogel_anzahl) AS summe FROM `aufnahmebuch` WHERE `mandant`='1' AND `datum` like '$split_date[0]%'";
+				if($result2 = mysqli_query($mysqli, $query2)) {
+					if($row2 = $result2->fetch_array(MYSQLI_BOTH)) {
+						
+						echo '<tr><td colspan="6" align="center"><h5>'.$split_date[0].'</h5></td></tr>';
+						
+					}
+				}
+				
 			}
 			
 			echo '
 				<tr>
 					<td align="center">'.$split_date[2].'.'.$split_date[1].'</td>
 					<td align="center">'; if(!empty($db_vogel_foto_name)) { echo '<a href="?menu=list&action=show&id='.$db_id.'">'.$db_vogel_art.' ('.$db_vogel_stadium.')</a>'; }else echo $db_vogel_art.' ('.$db_vogel_stadium.')'; echo '</td>
-					<td align="center">'.$anz.' ('.$db_vogel_anzahl.')</td>
+					<td align="center">'.$db_vogel_anzahl.'</td>
 					<td align="center">'; if (strlen($db_finder_ort) > 10){ echo substr($db_finder_ort, 0, 10) . '...'; }else echo $db_finder_ort; echo '</td>
 					<td align="center"><a href="?menu=edit&id='.$db_id.'"><i class="material-icons">edit</i></a></td>
 					<td align="center"><a href="?menu=list&action=delete&id='.$db_id.'" onclick="return window.confirm(\'Soll dieser Datensatz wirklich gelöscht werden?\');"><i class="material-icons">delete</i></a></td>
@@ -84,7 +93,7 @@
 	
 ?>
 	<tr>
-		<td colspan="2" class="listsum"><strong>Gesamt Euthanisiert:</strong></td>
+		<td colspan="2" class="listsum"><strong>Gesamt im Bestand:</strong></td>
 		<td class="listsum"><strong><?php echo $sum_anzahl; ?></strong></td>
 		<td colspan="3" class="listsum"></td>
 	</tr>

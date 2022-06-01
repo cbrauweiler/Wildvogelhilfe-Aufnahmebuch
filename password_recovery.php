@@ -60,7 +60,6 @@
 						$newpasshash = password_hash($newpass, PASSWORD_DEFAULT);
 						
 						$query = "UPDATE `benutzer` SET `recovery_key`='', `passwort`='$newpasshash' WHERE `email`='$email'";
-						echo $query;
 						mysqli_query($mysqli, $query);
 						
 						// E-Mail-Benachrichtigung

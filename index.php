@@ -137,6 +137,7 @@
 		<title>Wildvogelhilfe Aufnahmebuch</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
 		<!--Import Google Icon Font-->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -411,8 +412,6 @@
 						<p class="grey-text text-lighten-4">
 							Das Aufnahmebuch dient der Dokumentation der Aufgenommen Wildvögel/Wildtiere.<br />
 							Bei Fragen, Problemen oder Wünschen gerne über das Kontaktformular eine Nachricht schreiben!
-							<br /><br />
-							Zeit: <?php echo $now->format("H:i - d.m.Y"); ?>
 						</p>
 					</div>
 					<div class="col l4 offset-l2 s12">
@@ -428,7 +427,7 @@
 			</div>
 			<div class="footer-copyright">
 				<div class="container">
-					© 2021 <a class="grey-text text-lighten-4" href="https://christian-brauweiler.de">Christian Brauweiler</a> - Version: <?php if(!empty($_SESSION['mandant']) && $system_version != $sql_version) { echo '<span class="red">&nbsp;'.$sql_version.'&nbsp;</span>'; }else echo $system_version; ?>
+					© 2021-<?php echo $now->format("Y"); ?> <a class="grey-text text-lighten-4" href="https://christian-brauweiler.de">Christian Brauweiler</a> - Version: <?php if(!empty($_SESSION['mandant']) && $system_version != $sql_version) { echo '<span class="red">&nbsp;'.$sql_version.'&nbsp;</span>'; }else echo $system_version; ?>
 					<a class="grey-text text-lighten-4 right" href="?menu=contact">Kontakt</a>
 				</div>
 			</div>

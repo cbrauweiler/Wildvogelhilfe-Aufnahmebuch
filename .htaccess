@@ -1,0 +1,5 @@
+<IfModule mod_headers.c>
+	<FilesMatch "\.(css)$">
+		Header set Cache-Control "max-age=0, no-store"
+	</FilesMatch>
+</IfModule>
