@@ -307,6 +307,16 @@
 				xmlhttp.send(null);
 
 			}
+			
+			// Disable/Enable Spendensumme
+			function disable(){
+				document.getElementById("finder_spende_betrag").value = "";
+				document.getElementById("finder_spende_betrag").disabled = true;
+			}
+			
+			function enable(){
+				document.getElementById("finder_spende_betrag").disabled = false;
+			}
 
 		</script>
 

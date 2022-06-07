@@ -184,7 +184,7 @@ if($result = mysqli_query($mysqli, $query)) {
 		<div class="input-field col s6">
 			<p>
 				<label>
-					<input type="radio" name="finder_spende" value="1" class="validate" required <?php if($db_finder_spende == "1") { echo 'checked'; } ?> />
+					<input type="radio" name="finder_spende" value="1" class="validate" required <?php if($db_finder_spende == "1") { echo 'checked'; } ?> onclick="enable()" />
 					<span>Spende erhalten</span>
 				</label>
 			</p>
@@ -192,13 +192,13 @@ if($result = mysqli_query($mysqli, $query)) {
 		<div class="input-field col s6">
 			<p>
 				<label>
-					<input type="radio" name="finder_spende" value="0" class="validate" required <?php if($db_finder_spende == "0") { echo 'checked'; } ?> />
+					<input type="radio" name="finder_spende" value="0" class="validate" required <?php if($db_finder_spende == "0") { echo 'checked'; } ?> onclick="disable()" />
 					<span>Keine Spende erhalten</span>
 				</label>
 			</p>
 		</div>
 		<div class="input-field col s6">
-			<input id="finder_spende_betrag" name="finder_spende_betrag" type="text" value="<?php echo $db_finder_spende_betrag; ?>" autocomplete="off">
+			<input id="finder_spende_betrag" id="finder_spende_betrag" name="finder_spende_betrag" type="text" value="<?php echo $db_finder_spende_betrag; ?>" autocomplete="off" <?php if($db_finder_spende == "0") { echo 'disabled'; } ?>>
 			<label for="finder_spende_betrag">Spendenbetrag in Euro</label>
 		</div>
 		

@@ -106,7 +106,7 @@ if(isset($_POST['neu'])) {
 		<div class="card-panel white-text green accent-3 col s12 m3 center-align" id="green" onclick="setcolor(this);" style="cursor: pointer;">Hell-Grün</div>
 		<div class="card-panel white-text green darken-3 col s12 m3 center-align" id="darkgreen" onclick="setcolor(this);" style="cursor: pointer;">Grün</div>
 		<div class="card-panel white-text teal darken-4 col s12 m3 center-align" id="teal" onclick="setcolor(this);" style="cursor: pointer;">Blau-Grün</div>
-		<div class="card-panel white-text cyan accent-4 col s12 m3 center-align" id="cyan" onclick="setcolor(this);" style="cursor: pointer;">Türkis</div>
+		<div class="card-panel white-text cyan darken-3 col s12 m3 center-align" id="cyan" onclick="setcolor(this);" style="cursor: pointer;">Türkis</div>
 		<div class="card-panel white-text light-blue accent-4 col s12 m3 center-align" id="lightblue" onclick="setcolor(this);" style="cursor: pointer;">Hell-Blau</div>
 		<div class="card-panel white-text blue darken-3 col s12 m3 center-align" id="blue" onclick="setcolor(this);" style="cursor: pointer;">Blau</div>
 		<div class="card-panel white-text purple darken-4 col s12 m3 center-align" id="purple" onclick="setcolor(this);" style="cursor: pointer;">Lila</div>
@@ -812,16 +812,26 @@ if($result = mysqli_query($mysqli, $query)) {
 			}
 			
 		}
+		
+		$query3 = "SELECT `colorclass` FROM `einstellungen` WHERE `mandant`='$benutzer_mandant'";
+		if($result3 = mysqli_query($mysqli, $query3)) {
+			if($row3 = $result3->fetch_array(MYSQLI_BOTH)) {
+				
+				$benutzer_colorclass = $row3['colorclass'];
+				
+			}
+			
+		}
 				
 		
 		echo '
 		<tr>
-			<td align="center">'.$benutzer_mandant.'</td>
+			<td align="center" class="white-text '.$benutzer_colorclass.'">'.$benutzer_mandant.'</td>
 			<td align="center">'; if(!empty($benutzer_email)) { echo '<a href="mailto:'.$benutzer_email.'" title="'.$benutzer_email.'">'.$benutzer_benutzername.'</a>'; } else { echo $benutzer_benutzername; } echo'</td>
 			<td align="center">'.$benutzer_version.'</td>
 			<td align="center">'.date("d.m.y - H:i", $benutzer_lastlogon).' Uhr</td>
 			<td align="center">'.$sum_eintraege.'</td>
-			<td align="center">'; if(!empty($benutzer_mandant != $session_mandant)) { echo '<a href="?menu=settings&action=deluser&mandant='.$benutzer_mandant.'" onclick="return window.confirm(\'Soll dieser Benutzer wirklich gelöscht werden?\');"><i class="material-icons">delete</i></a>'; } echo'</td>
+			<td align="center">'; if(!empty($benutzer_mandant != $session_mandant)) { echo '<a href="?menu=settings&action=deluser&mandant='.$benutzer_mandant.'" onclick="return window.confirm(\'Soll der Benutzer '.$benutzer_benutzername.' wirklich gelöscht werden?\');"><i class="material-icons">delete</i></a>'; } echo'</td>
 		</tr>
 		';
 

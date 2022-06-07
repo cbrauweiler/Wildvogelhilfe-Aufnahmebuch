@@ -126,7 +126,7 @@ else {
 		<div class="input-field col s6">
 			<p>
 				<label>
-					<input name="typ" type="radio" name="finder_spende" value="1" class="validate" required>
+					<input name="typ" type="radio" name="finder_spende" value="1" class="validate" required onclick="enable()">
 					<span>Spende erhalten</span>
 				</label>
 			</p>
@@ -134,13 +134,13 @@ else {
 		<div class="input-field col s6">
 			<p>
 				<label>
-					<input name="typ" type="radio" name="finder_spende" value="0" checked class="validate" required>
+					<input name="typ" type="radio" name="finder_spende" value="0" checked class="validate" required onclick="disable()">
 					<span>Keine Spende erhalten</span>
 				</label>
 			</p>
 		</div>
 		<div class="input-field col s6">
-			<input id="finder_spende_betrag" name="finder_spende_betrag" type="text" autocomplete="off">
+			<input id="finder_spende_betrag" id="finder_spende_betrag" name="finder_spende_betrag" type="text" autocomplete="off" disabled>
 			<label for="finder_spende_betrag">Spendenbetrag in Euro</label>
 		</div>
 		

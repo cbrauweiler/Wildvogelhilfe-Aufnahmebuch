@@ -1,7 +1,7 @@
 <?php
 
 # mySQL Environment
-$sql_servername = 'localhost';
+$sql_servername = 'wildvogelhilfe-nkse.de';
 $sql_user = 'wildvogelhilfe';
 $sql_pass = '4&s9QGDg@3#MSweC';
 $sql_db = 'wildvogelhilfe';
