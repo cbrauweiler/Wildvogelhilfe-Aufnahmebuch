@@ -123,6 +123,15 @@ else {
 			<label for="finder_telefon">Telefon</label>
 		</div>
 		
+		<?php if($form_vogel_spende_neu == 'on') { ?>
+		<div class="input-field col s12">
+			<p>
+				<label>
+					<input name="typ" type="radio" name="finder_spende" value="0" checked class="validate" required onclick="disable()">
+					<span>Keine Spende erhalten</span>
+				</label>
+			</p>
+		</div>
 		<div class="input-field col s6">
 			<p>
 				<label>
@@ -132,19 +141,13 @@ else {
 			</p>
 		</div>
 		<div class="input-field col s6">
-			<p>
-				<label>
-					<input name="typ" type="radio" name="finder_spende" value="0" checked class="validate" required onclick="disable()">
-					<span>Keine Spende erhalten</span>
-				</label>
-			</p>
-		</div>
-		<div class="input-field col s6">
 			<input id="finder_spende_betrag" id="finder_spende_betrag" name="finder_spende_betrag" type="text" autocomplete="off" disabled>
 			<label for="finder_spende_betrag">Spendenbetrag in Euro</label>
 		</div>
+		<?php } ?>
 		
-		<div class="input-field col s6">
+		<?php if($form_vogel_spende_betrag_neu == 'on') { ?>
+		<div class="input-field col s12">
 			<p>
 				<label>
 					<input type="checkbox" name="finder_spendenbescheinigung" value="1">
@@ -152,6 +155,7 @@ else {
 				</label>
 			</p>
 		</div>
+		<?php } ?>
 	</div>
 	
 	<div class="row">	
@@ -267,14 +271,34 @@ else {
 			<div class="row">
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_katzenopfer" value="1"<?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?>>
-						<span>Ja</span>
+						<input type="radio" name="vogel_katzenopfer" value="0" checked <?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+						<span>Nein</span>
 					</label>
 				</p>
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_katzenopfer" value="0" checked <?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+						<input type="radio" name="vogel_katzenopfer" value="1"<?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+						<span>Ja</span>
+					</label>
+				</p>
+			</div>
+		</div>
+		<?php } ?>
+		
+		<?php if($form_vogel_anflugtrauma_neu == 'on') { ?>
+		<div class="input-field col s12">
+			<span>Anflugtrauma</span>
+			<div class="row">
+				<p class="col s3">
+					<label>
+						<input type="radio" name="vogel_anflugtrauma" value="0" checked <?php if($form_vogel_anflugtrauma_pflicht == 'on') { echo 'class="validate" required'; } ?>>
 						<span>Nein</span>
+					</label>
+				</p>
+				<p class="col s3">
+					<label>
+						<input type="radio" name="vogel_anflugtrauma" value="1"<?php if($form_vogel_anflugtrauma_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+						<span>Ja</span>
 					</label>
 				</p>
 			</div>
@@ -287,14 +311,14 @@ else {
 			<div class="row">
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_arztbesuch" value="1"<?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?>>
-						<span>Ja</span>
+						<input type="radio" name="vogel_arztbesuch" value="0" checked <?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+						<span>Nein</span>
 					</label>
 				</p>
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_arztbesuch" value="0" checked <?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?>>
-						<span>Nein</span>
+						<input type="radio" name="vogel_arztbesuch" value="1"<?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+						<span>Ja</span>
 					</label>
 				</p>
 			</div>

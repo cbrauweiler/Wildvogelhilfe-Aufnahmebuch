@@ -43,6 +43,7 @@ if(isset($_POST['speichern'])) {
 	$vogel_gewicht = $_POST['vogel_gewicht'];
 	$vogel_verletzungen = $_POST['vogel_verletzungen'];
 	$vogel_katzenopfer = $_POST['vogel_katzenopfer'];
+	$vogel_anflugtrauma = $_POST['vogel_anflugtrauma'];
 	$vogel_arztbesuch = $_POST['vogel_arztbesuch'];
 	$vogel_medikation = $_POST['vogel_medikation'];
 	$vogel_fehlfuetterung = $_POST['vogel_fehlfuetterung'];
@@ -61,7 +62,7 @@ if(isset($_POST['speichern'])) {
 	$vogel_weiterleitungan = $_POST['vogel_weiterleitungan'];
 	
 	
-	$query = "UPDATE `aufnahmebuch` SET `datum`='$datum', `lfdn`='$lfdn', `finder_vorname`='$finder_vorname', `finder_name`='$finder_name', `finder_strasse`='$finder_strasse', `finder_hausnummer`='$finder_hausnummer', `finder_plz`='$finder_plz', `finder_ort`='$finder_ort', `finder_email`='$finder_email', `finder_telefon`='$finder_telefon', `finder_spende`='$finder_spende', `finder_spende_betrag`='$finder_spende_betrag', `finder_spendenbescheinigung`='$finder_spendenbescheinigung', `vogel_foto`='$vogel_foto_content', `vogel_foto_name`='$vogel_foto_filename', `vogel_art`='$vogel_art', `vogel_anzahl`='$vogel_anzahl', `vogel_fundumstaende`='$vogel_fundumstaende', `vogel_stadium`='$vogel_stadium', `vogel_gewicht`='$vogel_gewicht', `vogel_verletzungen`='$vogel_verletzungen', `vogel_katzenopfer`='$vogel_katzenopfer', `vogel_arztbesuch`='$vogel_arztbesuch', `vogel_medikation`='$vogel_medikation', `vogel_fehlfuetterung`='$vogel_fehlfuetterung', `vogel_parasiten_advocate`='$vogel_parasiten_advocate', `vogel_parasiten_baycoxx`='$vogel_parasiten_baycoxx', `vogel_parasiten_sonstige`='$vogel_parasiten_sonstige', `vogel_ausgewildert`='$vogel_ausgewildert', `vogel_verstorben`='$vogel_verstorben', `vogel_verstorbendatum`='$vogel_verstorbendatum', `vogel_euthanasiert`='$vogel_euthanasiert', `vogel_euthanasiertdatum`='$vogel_euthanasiertdatum', `vogel_auswilderungsdatum`='$vogel_auswilderungsdatum', `vogel_weitergeleitet`='$vogel_weitergeleitet', `vogel_weiterleitungsdatum`='$vogel_weiterleitungsdatum', `vogel_weiterleitungan`='$vogel_weiterleitungan' WHERE `mandant`='$session_mandant' AND `id`='$_GET[id]'";
+	$query = "UPDATE `aufnahmebuch` SET `datum`='$datum', `lfdn`='$lfdn', `finder_vorname`='$finder_vorname', `finder_name`='$finder_name', `finder_strasse`='$finder_strasse', `finder_hausnummer`='$finder_hausnummer', `finder_plz`='$finder_plz', `finder_ort`='$finder_ort', `finder_email`='$finder_email', `finder_telefon`='$finder_telefon', `finder_spende`='$finder_spende', `finder_spende_betrag`='$finder_spende_betrag', `finder_spendenbescheinigung`='$finder_spendenbescheinigung', `vogel_foto`='$vogel_foto_content', `vogel_foto_name`='$vogel_foto_filename', `vogel_art`='$vogel_art', `vogel_anzahl`='$vogel_anzahl', `vogel_fundumstaende`='$vogel_fundumstaende', `vogel_stadium`='$vogel_stadium', `vogel_gewicht`='$vogel_gewicht', `vogel_verletzungen`='$vogel_verletzungen', `vogel_katzenopfer`='$vogel_katzenopfer', `vogel_anflugtrauma`='$vogel_anflugtrauma', `vogel_arztbesuch`='$vogel_arztbesuch', `vogel_medikation`='$vogel_medikation', `vogel_fehlfuetterung`='$vogel_fehlfuetterung', `vogel_parasiten_advocate`='$vogel_parasiten_advocate', `vogel_parasiten_baycoxx`='$vogel_parasiten_baycoxx', `vogel_parasiten_sonstige`='$vogel_parasiten_sonstige', `vogel_ausgewildert`='$vogel_ausgewildert', `vogel_verstorben`='$vogel_verstorben', `vogel_verstorbendatum`='$vogel_verstorbendatum', `vogel_euthanasiert`='$vogel_euthanasiert', `vogel_euthanasiertdatum`='$vogel_euthanasiertdatum', `vogel_auswilderungsdatum`='$vogel_auswilderungsdatum', `vogel_weitergeleitet`='$vogel_weitergeleitet', `vogel_weiterleitungsdatum`='$vogel_weiterleitungsdatum', `vogel_weiterleitungan`='$vogel_weiterleitungan' WHERE `mandant`='$session_mandant' AND `id`='$_GET[id]'";
 	#echo '<br /><br />'.$query;
 	mysqli_query($mysqli, $query);
 	
@@ -98,6 +99,7 @@ if($result = mysqli_query($mysqli, $query)) {
 		$db_vogel_gewicht = $row['vogel_gewicht'];
 		$db_vogel_verletzungen = $row['vogel_verletzungen'];
 		$db_vogel_katzenopfer = $row['vogel_katzenopfer'];
+		$db_vogel_anflugtrauma = $row['vogel_anflugtrauma'];
 		$db_vogel_arztbesuch = $row['vogel_arztbesuch'];
 		$db_vogel_medikation = $row['vogel_medikation'];
 		$db_vogel_fehlfuetterung = $row['vogel_fehlfuetterung'];
@@ -181,6 +183,15 @@ if($result = mysqli_query($mysqli, $query)) {
 			<label for="finder_telefon">Telefon</label>
 		</div>
 		
+		<?php if($form_vogel_spende_bearbeiten == 'on') { ?>
+		<div class="input-field col s12">
+			<p>
+				<label>
+					<input type="radio" name="finder_spende" value="0" class="validate" required <?php if($db_finder_spende == "0") { echo 'checked'; } ?> onclick="disable()" />
+					<span>Keine Spende erhalten</span>
+				</label>
+			</p>
+		</div>
 		<div class="input-field col s6">
 			<p>
 				<label>
@@ -190,19 +201,13 @@ if($result = mysqli_query($mysqli, $query)) {
 			</p>
 		</div>
 		<div class="input-field col s6">
-			<p>
-				<label>
-					<input type="radio" name="finder_spende" value="0" class="validate" required <?php if($db_finder_spende == "0") { echo 'checked'; } ?> onclick="disable()" />
-					<span>Keine Spende erhalten</span>
-				</label>
-			</p>
-		</div>
-		<div class="input-field col s6">
 			<input id="finder_spende_betrag" id="finder_spende_betrag" name="finder_spende_betrag" type="text" value="<?php echo $db_finder_spende_betrag; ?>" autocomplete="off" <?php if($db_finder_spende == "0") { echo 'disabled'; } ?>>
 			<label for="finder_spende_betrag">Spendenbetrag in Euro</label>
 		</div>
+		<?php } ?>
 		
-		<div class="input-field col s6">
+		<?php if($form_vogel_spende_betrag_bearbeiten == 'on') { ?>
+		<div class="input-field col s12">
 			<p>
 				<label>
 					<input type="checkbox" name="finder_spendenbescheinigung" value="1" <?php if($db_finder_spendenbescheinigung == "1") { echo 'checked'; } ?>>
@@ -210,6 +215,7 @@ if($result = mysqli_query($mysqli, $query)) {
 				</label>
 			</p>
 		</div>
+		<?php } ?>
 	</div>
 	
 	<div class="row">	
@@ -353,14 +359,34 @@ if($result = mysqli_query($mysqli, $query)) {
 			<div class="row">
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_katzenopfer" value="1"<?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_katzenopfer == "1") { echo ' checked'; } ?>>
-						<span>Ja</span>
+						<input type="radio" name="vogel_katzenopfer" value="0" checked<?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_katzenopfer == "0") { echo ' checked'; } ?>>
+						<span>Nein</span>
 					</label>
 				</p>
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_katzenopfer" value="0" checked<?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_katzenopfer == "0") { echo ' checked'; } ?>>
+						<input type="radio" name="vogel_katzenopfer" value="1"<?php if($form_vogel_katzenopfer_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_katzenopfer == "1") { echo ' checked'; } ?>>
+						<span>Ja</span>
+					</label>
+				</p>
+			</div>
+		</div>
+		<?php } ?>
+		
+		<?php if($form_vogel_anflugtrauma_bearbeiten == 'on') { ?>
+		<div class="input-field col s12">
+			<span>Anflugtrauma</span>
+			<div class="row">
+				<p class="col s3">
+					<label>
+						<input type="radio" name="vogel_anflugtrauma" value="0" checked<?php if($form_vogel_anflugtrauma_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_anflugtrauma == "0") { echo ' checked'; } ?>>
 						<span>Nein</span>
+					</label>
+				</p>
+				<p class="col s3">
+					<label>
+						<input type="radio" name="vogel_anflugtrauma" value="1"<?php if($form_vogel_anflugtrauma_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_anflugtrauma == "1") { echo ' checked'; } ?>>
+						<span>Ja</span>
 					</label>
 				</p>
 			</div>
@@ -373,14 +399,14 @@ if($result = mysqli_query($mysqli, $query)) {
 			<div class="row">
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_arztbesuch" value="1"<?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_arztbesuch == "1") { echo ' checked'; } ?>>
-						<span>Ja</span>
+						<input type="radio" name="vogel_arztbesuch" value="0" checked<?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_arztbesuch == "0") { echo ' checked'; } ?>>
+						<span>Nein</span>
 					</label>
 				</p>
 				<p class="col s3">
 					<label>
-						<input type="radio" name="vogel_arztbesuch" value="0" checked<?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_arztbesuch == "0") { echo ' checked'; } ?>>
-						<span>Nein</span>
+						<input type="radio" name="vogel_arztbesuch" value="1"<?php if($form_vogel_arztbesuch_pflicht == 'on') { echo 'class="validate" required'; } ?> <?php if($db_vogel_arztbesuch == "1") { echo ' checked'; } ?>>
+						<span>Ja</span>
 					</label>
 				</p>
 			</div>

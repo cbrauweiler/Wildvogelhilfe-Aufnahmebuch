@@ -320,6 +320,62 @@ if(isset($_POST['neu'])) {
 	</div>
 	
 	<div class="row">
+		<span class="col s3 center-align">Spende erhalten</span>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_spende_neu" onchange="savesettings(this);"<?php if($form_vogel_spende_neu == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_spende_bearbeiten" onchange="savesettings(this);"<?php if($form_vogel_spende_bearbeiten == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_spende_pflicht" onchange="savesettings(this);"<?php if($form_vogel_spende_pflicht == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+	</div>
+	
+	<div class="row">
+		<span class="col s3 center-align">Spendenbescheinigung</span>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_spende_betrag_neu" onchange="savesettings(this);"<?php if($form_vogel_spende_betrag_neu == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_spende_betrag_bearbeiten" onchange="savesettings(this);"<?php if($form_vogel_spende_betrag_bearbeiten == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_spende_betrag_pflicht" onchange="savesettings(this);"<?php if($form_vogel_spende_betrag_pflicht == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+	</div>
+	
+	<div class="row">
 		<span class="col s3 center-align">Foto</span>
 		<div class="col s3 center-align switch">
 			<label>
@@ -537,6 +593,34 @@ if(isset($_POST['neu'])) {
 			<label>
 				Aus
 				<input type="checkbox" name="form_vogel_katzenopfer_pflicht" onchange="savesettings(this);"<?php if($form_vogel_katzenopfer_pflicht == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+	</div>
+	
+	<div class="row">
+		<span class="col s3 center-align">Anflugtrauma</span>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_anflugtrauma_neu" onchange="savesettings(this);"<?php if($form_vogel_anflugtrauma_neu == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_anflugtrauma_bearbeiten" onchange="savesettings(this);"<?php if($form_vogel_anflugtrauma_bearbeiten == 'on') { echo ' checked'; } ?>>
+				<span class="lever"></span>
+				An
+			</label>
+		</div>
+		<div class="col s3 center-align switch">
+			<label>
+				Aus
+				<input type="checkbox" name="form_vogel_anflugtrauma_pflicht" onchange="savesettings(this);"<?php if($form_vogel_anflugtrauma_pflicht == 'on') { echo ' checked'; } ?>>
 				<span class="lever"></span>
 				An
 			</label>
