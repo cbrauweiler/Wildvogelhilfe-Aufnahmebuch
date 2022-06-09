@@ -545,8 +545,8 @@
 			while($row = $result->fetch_array(MYSQLI_BOTH)) {
 				
 				$vogel_art = $row['vogel_art'];
-				$summe_katzenopfer = $row['summe_katzenopfer'];
-				$summe = $summe+$summe_katzenopfer;
+				$summe_anflugtrauma = $row['summe_anflugtrauma'];
+				$summe = $summe+$summe_anflugtrauma;
 				
 				// Nestling & Nestling befiedert
 				$query2 = "SELECT sum(vogel_anzahl) as summe_anzahl, sum(vogel_weitergeleitet) as summe_weitergeleitet, sum(vogel_ausgewildert) as summe_ausgewildert, sum(vogel_euthanasiert) as summe_euthanasiert, sum(vogel_verstorben) as summe_verstorben FROM `aufnahmebuch` WHERE `mandant`='$session_mandant' AND `datum` like '$statyear%' AND `vogel_art`='$vogel_art' AND `vogel_stadium` LIKE 'nestling%' AND `vogel_anflugtrauma`='1'";
@@ -648,7 +648,7 @@
 						<td>'.$adult_lebt.'</td>
 						<td style="background-color: #ddd;">'.$summe_art_tot.'</td>
 						<td style="background-color: #ddd;">'.$summe_art_lebt.'</td>
-						<td style="background-color: #ddd;"><strong>'.$summe_katzenopfer.'</strong></td>
+						<td style="background-color: #ddd;"><strong>'.$summe_anflugtrauma.'</strong></td>
 					</tr>
 						
 				';
