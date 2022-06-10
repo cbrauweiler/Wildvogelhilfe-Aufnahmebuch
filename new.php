@@ -81,8 +81,6 @@ else {
 	</div>
 	<?php } ?>
 	
-	<br /><br /><br />
-	
 	<div class="row">		
 		<h4 class="col s12">Finderdaten</h4>
 		
@@ -153,7 +151,7 @@ else {
 		<div class="input-field col s12">
 			<p>
 				<label>
-					<input type="checkbox" name="finder_spendenbescheinigung" value="1">
+					<input type="checkbox" name="finder_spendenbescheinigung" value="1"  <?php if($form_spendenbescheinigung_pflicht == 'on') { echo 'class="validate" required'; } ?>>
 					<span>Spendenbescheinigung ausgestellt?</span>
 				</label>
 			</p>
@@ -168,7 +166,7 @@ else {
 		<div class="file-field input-field col s12">
 			<div class="btn waves-effect waves-light <?php echo $colorclass; ?>">
 				<span>Foto</span>
-				<input type="file" name="vogel_foto" accept="image/*"<?php if($form_vogel_foto_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+				<input type="file" name="vogel_foto" accept="image/*" <?php if($form_vogel_foto_pflicht == 'on') { echo 'class="validate" required'; } ?>>
 			</div>
 			<div class="file-path-wrapper">
 				<input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -178,8 +176,8 @@ else {
 		
 		<?php if($form_vogel_art_neu == 'on') { ?>
 		<div class="input-field col s12">
-			<input type="text" name="vogel_art" size="28" autocomplete="off" list="art"<?php if($form_vogel_art_pflicht == 'on') { echo 'class="validate" required'; } ?>>
-			<label for="vogel_art">Art</label>
+			<input type="text" name="vogel_art" autocomplete="off" list="art" <?php if($form_vogel_art_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+			<label for="vogel_art" class="">Art</label>
 			<datalist id="art">
 			<?php
 			
@@ -204,7 +202,7 @@ else {
 		
 		<?php if($form_vogel_anzahl_neu == 'on') { ?>
 		<div class="input-field col s12">
-			<input type="number" name="vogel_anzahl" autocomplete="off"<?php if($form_vogel_anzahl_pflicht == 'on') { echo 'class="validate" required'; } ?>>
+			<input type="number" name="vogel_anzahl" autocomplete="off" <?php if($form_vogel_anzahl_pflicht == 'on') { echo 'class="validate" required'; } ?>>
 			<label for="vogel_anzahl">Anzahl</label>
 		</div>
 		<?php } ?>

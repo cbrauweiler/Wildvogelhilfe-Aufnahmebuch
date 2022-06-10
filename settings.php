@@ -340,7 +340,7 @@ if(isset($_POST['neu'])) {
 		<div class="col s3 center-align switch">
 			<label>
 				Aus
-				<input type="checkbox" name="form_vogel_spende_pflicht" onchange="savesettings(this);"<?php if($form_vogel_spende_pflicht == 'on') { echo ' checked'; } ?>>
+				<input type="checkbox" name="form_vogel_spende_pflicht" onchange="savesettings(this);" checked disabled>
 				<span class="lever"></span>
 				An
 			</label>
@@ -368,7 +368,7 @@ if(isset($_POST['neu'])) {
 		<div class="col s3 center-align switch">
 			<label>
 				Aus
-				<input type="checkbox" name="form_vogel_spende_betrag_pflicht" onchange="savesettings(this);"<?php if($form_vogel_spende_betrag_pflicht == 'on') { echo ' checked'; } ?>>
+				<input type="checkbox" name="form_vogel_spende_betrag_pflicht" onchange="savesettings(this);" checked disabled>
 				<span class="lever"></span>
 				An
 			</label>
