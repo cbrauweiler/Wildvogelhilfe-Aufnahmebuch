@@ -165,12 +165,14 @@ if($result = mysqli_query($mysqli, $query)) {
 		</div>
 		
 		<div class="input-field col s6">
-			<input id="finder_plz" name="finder_plz" type="text" value="<?php echo $db_finder_plz; ?>" onblur="getort(this)" autocomplete="off" <?php if($form_strhsnr_pflicht == 'on') { echo ' class="validate" required'; } ?>>
+			<input id="finder_plz" list="plz" name="finder_plz" type="text" value="<?php echo $db_finder_plz; ?>" onblur="getort(this)" autocomplete="off" <?php if($form_strhsnr_pflicht == 'on') { echo ' class="validate" required'; } ?>>
 			<label for="finder_plz">PLZ</label>
+			<datalist id="plz"></datalist>
 		</div>
 		<div class="input-field col s6">		
-			<input id="finder_ort" name="finder_ort" type="text" value="<?php echo $db_finder_ort; ?>" onblur="getplz(this)" autocomplete="off" <?php if($form_strhsnr_pflicht == 'on') { echo ' class="validate" required'; } ?>>
+			<input id="finder_ort" list="ort" name="finder_ort" type="text" value="<?php echo $db_finder_ort; ?>" onblur="getplz(this)" autocomplete="off" <?php if($form_strhsnr_pflicht == 'on') { echo ' class="validate" required'; } ?>>
 			<label for="finder_ort">Ort</label>
+			<datalist id="ort"></datalist>
 		</div>
 		
 		<div class="input-field col s12">

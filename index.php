@@ -170,73 +170,66 @@
 				});
 			});
 
-			// Ort von PLZ ermitteln
+			// Autocomplete PLZ & Ort
+			$(document).ready(function(){
+				$("#finder_plz").keyup(function(){
+					$.get("autocomplete_ortplz.php", {plz: $(this).val()}, function(data){
+						$("datalist").empty();
+						$("datalist").html(data);
+					});
+				});
+			});
+			$(document).ready(function(){
+				$("#finder_ort").keyup(function(){
+					$.get("autocomplete_ortplz.php", {ort: $(this).val()}, function(data){
+						$("datalist").empty();
+						$("datalist").html(data);
+					});
+				});
+			});
+			
+			// PLZ <-> Ort
 			function getort(plz) {
-
+			
 				// check if ort is already filled
 				if (document.getElementById("finder_ort").value!="") { document.getElementById("finder_ort").value=""; }
-
+			
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "search_plzort.php?plz=" + plz.value, true);
 				xmlhttp.onreadystatechange=function() {
-
+					
 					if (xmlhttp.readyState==4) {
-
+					
 						document.getElementById("finder_ort").value=xmlhttp.responseText;
-
+					
 					}
-
+					
 				}
-
+				
 				xmlhttp.send(null);
-
+				
 			}
-
-			// PLZ von Ort ermitteln
+			
 			function getplz(ort) {
-
+			
 				// check if ort is already filled
 				if (document.getElementById("finder_plz").value!="") { document.getElementById("finder_plz").value=""; }
-
+			
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open("GET", "search_plzort.php?ort=" + ort.value, true);
 				xmlhttp.onreadystatechange=function() {
-
+					
 					if (xmlhttp.readyState==4) {
-
+					
 						document.getElementById("finder_plz").value=xmlhttp.responseText;
-
+					
 					}
-
+					
 				}
-
+				
 				xmlhttp.send(null);
-
+				
 			}
-
-			// Autocomplete Ort
-			$(function() {
-				$("#finder_ort").autocomplete({
-					source: "autocomplete_ort.php",
-					minLength: 3,
-					select: function( event, ui ) {
-						event.preventDefault();
-						$("#finder_ort").val(ui.item.value);
-					}
-				});
-			});
-
-			// Autocomplete PLZ
-			$(function() {
-				$("#finder_plz").autocomplete({
-					source: "autocomplete_plz.php",
-					minLength: 3,
-					select: function( event, ui ) {
-						event.preventDefault();
-						$("#finder_plz").val(ui.item.value);
-					}
-				});
-			});
 
 			// Instant Save Settings
 			function savesettings(obj) {
