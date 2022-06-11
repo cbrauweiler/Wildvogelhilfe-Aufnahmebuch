@@ -64,7 +64,7 @@ else {
 	<div class="row">
 		<div class="input-field col s3">
 			<label>
-				<input type="date" name="datum" value="<?php echo date("Y-m-d"); ?>" min="<?php echo date("Y-m-d", time()-7776000); ?>" max="<?php echo date("Y-m-d"); ?>" class="validate" required>
+				<input type="date" name="datum" value="<?php echo date("Y-m-d"); ?>" max="<?php echo date("Y-m-d"); ?>" class="validate" required>
 				<span>Aufnahmedatum</span>
 			</label>
 		</div>
