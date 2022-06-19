@@ -156,9 +156,9 @@ if(!empty($_SESSION['mandant'])) {
 }
 else {
 	
-	$colorclass = 'green accent-3';
-	$primarycolor = '#00e676';
-	$secondarycolor = '#00e676';
+	$colorclass = 'teal darken-4';
+	$primarycolor = '#004d40';
+	$secondarycolor = '#80cbc4';
 	
 }
 
